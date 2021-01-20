@@ -24,7 +24,7 @@
         <!-- Artiklar placerar sig snyggt efter varann -->
         <article>
             <h1>Uppg 1</h1>
-            <p>Xampp server info (modification1)</p>
+            <p>Xampp server info</p>
         </article>
 
         <?php
