@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dennis JS Demo</title>
+    <title>Pontus JS Demo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,8 +25,7 @@
         <article>
             <h1>Uppgift 1</h1>
             <p>Xampp server info</p>
-        </article>
-
+        
         <?php
         print (3+6);
         // Uppg1 - Superglobals
@@ -36,6 +35,7 @@
         // Konkatenering med punkt, märk att PHP kod producerar HTML resurser
         print("<p>Servern snurrar på port :" . $serverPort . "</p>");
         ?>
+        </article>
 
         <article>
             <h1>Uppgift 2</h1>
