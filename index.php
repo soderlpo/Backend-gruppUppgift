@@ -25,16 +25,16 @@
         <article>
             <h1>Uppgift 1</h1>
             <p>Xampp server info</p>
-        
+
         <?php
-        print (3+6);
-        // Uppg1 - Superglobals
-        //phpinfo(); sök upg info här
-        print ($_SERVER ['REMOTE_USER']);
-        $serverPort = $_SERVER['SERVER_PORT'];
-        // Konkatenering med punkt, märk att PHP kod producerar HTML resurser
-        print("<p>Servern snurrar på port :" . $serverPort . "</p>");
-        ?>
+print(3 + 6);
+// Uppg1 - Superglobals
+//phpinfo(); sök upg info här
+print($_SERVER['REMOTE_USER']);
+$serverPort = $_SERVER['SERVER_PORT'];
+// Konkatenering med punkt, märk att PHP kod producerar HTML resurser
+print("<p>Servern snurrar på port :" . $serverPort . "</p>");
+?>
         </article>
 
         <article>
