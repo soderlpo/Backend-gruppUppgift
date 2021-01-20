@@ -23,7 +23,10 @@
 
         <!-- Artiklar placerar sig snyggt efter varann -->
         <article>
-            <h1>Uppgift 1</h1>
+            <h1>Project 1</h1>
+        </article>
+        <article>
+            <h2>Uppgift 1</h2>
             <p>Xampp server info</p>
 
         <?php
@@ -38,27 +41,42 @@ print("<p>Servern snurrar på port :" . $serverPort . "</p>");
         </article>
 
         <article>
-            <h1>Uppgift 2</h1>
+            <h2>Uppgift 2</h2>
             <p>Tid och datum</p>
             <?php
-            //Upg 2 här
-            print( "<p>Det är den " . date("d") . " i dag</p>" );
-            print( "<p>Klockan är " . date("h:i:s") . " just nu</p>");
-            print( "<p>Det är månad " . date("m"). " idag</p>");
-            //TODO: Skapa en array av månaderna och välj den nuvarande
-            $manader = array("Januari", "Februari", "Mars");
-            //hur kan vi använda 01 från date("m") som index?
-            $manad = date("m");
-            // Tyvärr verkar $manad vara en sträng inte en Number
-            //Type cast str till int:
-            $manadInt = (int)$manad;
-            print("<p>På Svenska heter den månaden: " . $manader[$manadInt] );
-            ?>
+//Upg 2 här
+print("<p>Klockan är " . date("h:i:s") . " just nu</p>");
+print("<p>Det är den " . date("d") . " i dag</p>");
+print("<p>Det är månad " . date("m") . " idag</p>");
+//TODO: Skapa en array av månaderna och välj den nuvarande
+$manader = array("Null", "Januari", "Februari", "Mars");
+//hur kan vi använda 01 från date("m") som index?
+$manad = date("m");
+// Tyvärr verkar $manad vara en sträng inte en Number
+//Type cast str till int:
+$manadInt = (int) $manad;
+print("<p>På Svenska heter den månaden: " . $manader[$manadInt]);
+?>
         </article>
 
         <article>
-            <h1>Uppgift 3</h1>
-            <p>TBD</p>
+            <h2>Uppgift 3</h2>
+            <p>Formulär</p>
+            <form action="index.php" method="get">
+                Dag: <input type="text" name="dag"><br>
+                Månad: <input type="text" name="manad"><br>
+                År: <input type="text" name="ar"><br>
+                <input type="submit">
+            </form>
+            <?php
+            // Kom åt GET från URLen
+            $dag = $_GET["dag"];
+            $man = $_GET["manad"];
+            $ar = $_GET["ar"];
+                print("Du vill veta hur länge det är till " . $dag . "." . $man . "." . $ar);
+            ?>
+
+        </article>
     </div>
 </body>
 
