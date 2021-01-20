@@ -40,6 +40,20 @@ print("<p>Servern snurrar på port :" . $serverPort . "</p>");
         <article>
             <h1>Uppgift 2</h1>
             <p>Tid och datum</p>
+            <?php
+            //Upg 2 här
+            print( "<p>Det är den " . date("d") . " i dag</p>" );
+            print( "<p>Klockan är " . date("h:i:s") . " just nu</p>");
+            print( "<p>Det är månad " . date("m"). " idag</p>");
+            //TODO: Skapa en array av månaderna och välj den nuvarande
+            $manader = array("Januari", "Februari", "Mars");
+            //hur kan vi använda 01 från date("m") som index?
+            $manad = date("m");
+            // Tyvärr verkar $manad vara en sträng inte en Number
+            //Type cast str till int:
+            $manadInt = (int)$manad;
+            print("<p>På Svenska heter den månaden: " . $manader[$manadInt] );
+            ?>
         </article>
 
         <article>
