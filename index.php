@@ -38,9 +38,13 @@
         ?>
 
         <article>
-            <h1>Uppg 2</h1>
+            <h1>Uppgift 2</h1>
             <p>Tid och datum</p>
         </article>
+
+        <article>
+            <h1>Uppgift 3</h1>
+            <p>TBD</p>
     </div>
 </body>
 
