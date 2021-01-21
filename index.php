@@ -30,13 +30,21 @@
             <p>Xampp server info</p>
 
         <?php
-print(3 + 6);
 // Uppg1 - Superglobals
-//phpinfo(); sök upg info här
-print($_SERVER['REMOTE_USER']);
+//phpinfo();
+//sök upg info här
+$userName = $_SERVER['REMOTE_USER'];
+$userIP = $_SERVER['REMOTE_ADDR'];
 $serverPort = $_SERVER['SERVER_PORT'];
+$serverName = $_SERVER['SERVER_NAME'];
+$serverApaVers = $_SERVER['SERVER_SOFTWARE'];
+$serverPHPVers = phpversion();
+$serverIP = $_SERVER['SERVER_ADDR'];
 // Konkatenering med punkt, märk att PHP kod producerar HTML resurser
+print("<p>Hello " . $userName . " , din IP adress är: " . $userIP . "</p>"); 
 print("<p>Servern snurrar på port :" . $serverPort . "</p>");
+print("<p>Serverns namn är : " . $serverName . " och IP addressen är " . $serverIP . "</p>");
+print("<p>Apache och PHP versonerna är: " . $serverApaVers . " och " . $serverPHPVers . "</p>");
 ?>
         </article>
 
@@ -49,8 +57,8 @@ print("<p>Klockan är " . date("h:i:s") . " just nu</p>");
 print("<p>Det är den " . date("d") . " i dag</p>");
 print("<p>Det är månad " . date("m") . " idag</p>");
 //TODO: Skapa en array av månaderna och välj den nuvarande
-$manader = array("Null", "Januari", "Februari", "Mars");
-//hur kan vi använda 01 från date("m") som index?
+$manader = array("Null", "Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December");
+//hur kan vi använda 01 från date("m") som index? Svar: lag till en Null variabel I början av Arrayn, eftersom den anars börjar frå 0, inte 1
 $manad = date("m");
 // Tyvärr verkar $manad vara en sträng inte en Number
 //Type cast str till int:
