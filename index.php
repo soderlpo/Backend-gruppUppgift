@@ -1,3 +1,7 @@
+<?php
+session_start();
+include "functions.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +16,7 @@
 <body>
     <!-- Containern har max bredd 800px -->
     <div id="container">
-        <nav>
-            <!-- Logo och meny finns i nav -->
-            <ul>
-                <a id="current" href="home/">Home</a>
-                <a href="projekt1/">Projekt 1</a>
-                <a href="projekt2/">Projekt 2</a>
-            </ul>
-        </nav>
+        <?php include "navbar.php"?>
 
         <!-- Artiklar placerar sig snyggt efter varann -->
         <article>
@@ -29,7 +26,7 @@
             <h2>Uppgift 1</h2>
             <p>Xampp server info</p>
 
-        <?php
+            <?php
 // Uppg1 - Superglobals
 //phpinfo();
 //sök upg info här
@@ -41,7 +38,7 @@ $serverApaVers = $_SERVER['SERVER_SOFTWARE'];
 $serverPHPVers = phpversion();
 $serverIP = $_SERVER['SERVER_ADDR'];
 // Konkatenering med punkt, märk att PHP kod producerar HTML resurser
-print("<p>Hello " . $userName . " , din IP adress är: " . $userIP . "</p>"); 
+print("<p>Hello " . $userName . " , din IP adress är: " . $userIP . "</p>");
 print("<p>Servern snurrar på port :" . $serverPort . "</p>");
 print("<p>Serverns namn är : " . $serverName . " och IP addressen är " . $serverIP . "</p>");
 print("<p>Apache och PHP versonerna är: " . $serverApaVers . " och " . $serverPHPVers . "</p>");
@@ -77,13 +74,61 @@ print("<p>På Svenska heter den månaden: " . $manader[$manadInt]);
                 <input type="submit">
             </form>
             <?php
-            // Kom åt GET från URLen
-            $dag = $_GET["dag"];
-            $man = $_GET["manad"];
-            $ar = $_GET["ar"];
-                print("Du vill veta hur länge det är till " . $dag . "." . $man . "." . $ar);
-            ?>
+//Kolla om man tryckt submit
+if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"])) {
+// Kom åt GET från URLen
+    $dag = $_GET["dag"];
+    $man = $_GET["manad"];
+    $ar = $_GET["ar"];
+    print("Du vill veta hur länge det är till " . $dag . "." . $man . "." . $ar);
+}
+?>
 
+        </article>
+
+        <article>
+            <h2>Uppgift 4</h2>
+            <form action="index.php" method="get">
+                Username: <input type="text" name="username"><br>
+                E-mail: <input type="text" name="email"><br>
+                <input type="submit" value="Registrera dig">
+            </form>
+
+            <?php
+if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
+    //Uppg 4 - Skicka confirmation email
+    $username = test_input($_GET['username']);
+    print($username);
+}
+?>
+
+        </article>
+
+        <article>
+            <h2>Uppg 5</h2>
+            <p>Cookies</p>
+            <?php
+
+//Ge användaren en cookie
+$cookie_name = "username";
+$cookie_value = "soderlpo";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
+
+//Kolla ifall användaren har en cookie
+if (isset($_COOKIE["username"])) {
+    print("<p>Welcome " . $cookie_value . "!</p>");
+}
+
+?>
+        </article>
+        <article>
+            <h2>Uppg 6</h2>
+            <?php
+//Upp6 - Spara användarens data på servern
+$_SESSION['user'] = "Candles";
+print("<p>Endast Candles har Dark Webb tillgång</p>");
+print("<a href='darkweb.php'>DARK WEB</a>");
+?>
         </article>
     </div>
 </body>
