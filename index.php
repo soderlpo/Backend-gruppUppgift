@@ -123,11 +123,49 @@ if (isset($_COOKIE["username"])) {
         </article>
         <article>
             <h2>Uppg 6</h2>
+            <!--Glöm inte att ändra method="get" till method="post"-->
+            <form action="index.php" method="post">
+                Login: <input type="text" name="login"><br>
+                Password: <input type="text" name="password"><br>
+                <input type="submit" value="Logga in">
+            </form>
             <?php
 //Upp6 - Spara användarens data på servern
+$login = test_input($_REQUEST["login"]);
+$password = test_input($_REQUEST["password"]);
+
+if ($login == "Candles") {
+    
+//"Sessionen abc123 == $SESSION['user'] = Candles"
 $_SESSION['user'] = "Candles";
 print("<p>Endast Candles har Dark Webb tillgång</p>");
 print("<a href='darkweb.php'>DARK WEB</a>");
+}
+else if ($login == "Hacker") {
+    $_SESSION['user'] = "Hacker";
+print("<p>Endast Candles har Dark Webb tillgång</p>");
+print("<a href='darkweb.php'>DARK WEB</a>");
+}
+else {
+    print("<p>Not logged in with admin privlige</p>");
+}
+?>
+        </article>
+        <article>
+            <h2>Uppg 7</h2>
+            <?php
+            
+?>
+        </article>
+
+        <article>
+            <h2>Uppg 8</h2>
+            <?php
+            //TODO: Hitta användaren i $_SERVER och skriv in den
+            //TODO: Formatera tiden i nåt mänkoläsligt format
+$myfile = fopen("besok.log", "a+") or die("Unable to open file!");
+fwrite($myfile, "Hello World, time is " . time() . "\n");
+fclose($myfile);
 ?>
         </article>
     </div>
