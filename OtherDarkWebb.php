@@ -7,13 +7,10 @@ session_start();
 <body>
 
     <?php
-print("<p>Här är innehållet av din session</p>");
-print_r($_SESSION);
+print("<p>Här är inget specielt, men nu vet vi att min favorit färg är " . $_SESSION["favcolor"] . "</p>");
 print("<br>Användaren:" . $_SESSION['user']);
 
 if ($_SESSION['user'] == "Admin") {
-
-
 // Vissa en text ändast om $_SESSION['user'] == "Admin"
 print("<br>This is secret information");
 }

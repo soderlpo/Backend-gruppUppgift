@@ -85,11 +85,11 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"
     $dag = $_GET["dag"];
     $man = $_GET["manad"];
     $ar = $_GET["ar"];
-    $framtiddate = mktime(0 , 0 , 0 , $man , $dag , $ar);
+    $framtiddate = mktime(0, 0, 0, $man, $dag, $ar);
     $idag = time();
     $skillnad = $framtiddate - $idag;
     print("Du vill veta hur länge det är till " . $dag . "." . $man . "." . $ar);
-    print("<p>Det är: " . floor($skillnad) . " sekunder, " . floor($skillnad/60) . " minuter, " . floor($skillnad/60/60) . " timmar eller " . floor($skillnad/60/60/24) . " dagar tills det datum</p>");
+    print("<p>Det är: " . floor($skillnad) . " sekunder, " . floor($skillnad / 60) . " minuter, " . floor($skillnad / 60 / 60) . " timmar eller " . floor($skillnad / 60 / 60 / 24) . " dagar tills det datum</p>");
 }
 ?>
 
@@ -104,31 +104,32 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"
             </form>
 
             <?php
-            function randomPassword() {
-                $alfabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-                $passwordran = array();
-                $längdpass = strlen($alfabet) - 1;
-                for ($i = 0; $i < 7; $i++) {
-                    $n = rand(0, $längdpass);
-                    $passwordran[$i] = $alfabet[$n];
-                }
-                return implode ($passwordran);
-            }
+function randomPassword()
+{
+    $alfabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $passwordran = array();
+    $längdpass = strlen($alfabet) - 1;
+    for ($i = 0; $i < 7; $i++) {
+        $n = rand(0, $längdpass);
+        $passwordran[$i] = $alfabet[$n];
+    }
+    return implode($passwordran);
+}
 if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
     //Uppg 4 - Skicka confirmation email
     $username = test_input($_GET['username']);
     $email = test_input($_GET['email']);
-    
+
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-       $strpasswordran = randomPassword();
+        $strpasswordran = randomPassword();
         print($email . " är en valid email address, din password är " . $strpasswordran . ", welcome");
-        mail( $email , "Randomised password", "Ditt password är: " . $strpasswordran . ", welcome");
-      } else {
+        mail($email, "Randomised password", "Ditt password är: " . $strpasswordran . ", welcome");
+    } else {
         print("$email är inte en valid email address");
-      }
-    print("<p>".  $username . "</p>");
-    
     }
+    print("<p>" . $username . "</p>");
+
+}
 
 ?>
 
@@ -141,12 +142,17 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
 
 //Ge användaren en cookie
 $cookie_name = "username";
-$cookie_value = "soderlpo";
-setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
+$cookie_value = date('Y-m-d H:i:s', time());
+
 
 //Kolla ifall användaren har en cookie
-if (isset($_COOKIE["username"])) {
-    print("<p>Welcome " . $cookie_value . "!</p>");
+if (!isset($_COOKIE[$cookie_name])) {
+    print("Cookie named '" . $cookie_name . "' is not set!");
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 2), "/");
+    
+} else {
+    print("Welcome back, we saved you a cookie " . $cookie_name. "!<br>");
+    print("You joined at: " . $_COOKIE[$cookie_name]);
 }
 
 ?>
@@ -164,19 +170,20 @@ if (isset($_COOKIE["username"])) {
 $login = test_input($_REQUEST["login"]);
 $password = test_input($_REQUEST["password"]);
 
-if ($login == "Candles") {
-    
-//"Sessionen abc123 == $SESSION['user'] = Candles"
-$_SESSION['user'] = "Candles";
-print("<p>Endast Candles har Dark Webb tillgång</p>");
-print("<a href='darkweb.php'>DARK WEB</a>");
-}
-else if ($login == "Hacker") {
+if ($login == "Admin") {
+
+//"Sessionen abc123 == $SESSION['user'] = Admin"
+    $_SESSION['user'] = "Admin";
+    $_SESSION["favcolor"] = "grön";
+    print("<p>Endast Admin har Dark Webb tillgång</p>");
+    print("<a href='darkweb.php'>DARK WEB</a></br>");
+    print("<a href='OtherDarkWebb.php'>A secret place</a>");
+} else if ($login == "Hacker") {
     $_SESSION['user'] = "Hacker";
-print("<p>Endast Candles har Dark Webb tillgång</p>");
-print("<a href='darkweb.php'>DARK WEB</a>");
-}
-else {
+    print("<p>Endast Admin har Dark Webb tillgång</p>");
+    print("<a href='darkweb.php'>DARK WEB</a></br>");
+    print("<a href='OtherDarkWebb.php'>A secret place</a>");
+} else {
     print("<p>Not logged in with admin privlige</p>");
 }
 ?>
@@ -193,49 +200,49 @@ else {
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    print("File is an image - " . $check["mime"] . ".");
-    $uploadOk = 1;
-  } else {
-    print("File is not an image.");
-    $uploadOk = 0;
-  }
+if (isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if ($check !== false) {
+        print("File is an image - " . $check["mime"] . ".");
+        $uploadOk = 1;
+    } else {
+        print("File is not an image.");
+        $uploadOk = 0;
+    }
 }
 
 // Check if file already exists
 if (file_exists($target_file)) {
-  print("Sorry, file already exists.<br>");
-  $uploadOk = 0;
+    print("Sorry, file already exists.<br>");
+    $uploadOk = 0;
 }
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
-  print("Sorry, your file is too large.<br>");
-  $uploadOk = 0;
+    print("Sorry, your file is too large.<br>");
+    $uploadOk = 0;
 }
 
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-  print("Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>");
-  $uploadOk = 0;
+if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif") {
+    print("Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>");
+    $uploadOk = 0;
 }
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-  print("Sorry, your file was not uploaded.<br>");
+    print("Sorry, your file was not uploaded.<br>");
 // if everything is ok, try to upload file
 } else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    print("The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.<br>");
-  } else {
-    print("Sorry, there was an error uploading your file.<br>");
-  }
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        print("The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.<br>");
+    } else {
+        print("Sorry, there was an error uploading your file.<br>");
+    }
 }
 $dirctoryscan = scandir($target_dir);
 print_r($dirctoryscan);
@@ -245,8 +252,8 @@ print_r($dirctoryscan);
         <article>
             <h2>Uppg 8</h2>
             <?php
-            //TODO: Hitta användaren i $_SERVER och skriv in den
-            //TODO: Formatera tiden i nåt mänkoläsligt format
+//TODO: Hitta användaren i $_SERVER och skriv in den
+//TODO: Formatera tiden i nåt mänkoläsligt format
 $myfile = fopen("besok.log", "a+") or die("Unable to open file!");
 fwrite($myfile, "Hello World, time is " . time() . "\n");
 fclose($myfile);
