@@ -141,7 +141,7 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
             <?php
 
 //Ge användaren en cookie
-$cookie_name = "username";
+$cookie_name = "user";
 $cookie_value = date('Y-m-d H:i:s', time());
 
 
@@ -252,12 +252,42 @@ print_r($dirctoryscan);
         <article>
             <h2>Uppg 8</h2>
             <?php
+$NewUserIP = $_SERVER['REMOTE_ADDR'];
+$filenamn = "besok.log";
 //TODO: Hitta användaren i $_SERVER och skriv in den
 //TODO: Formatera tiden i nåt mänkoläsligt format
-$myfile = fopen("besok.log", "a+") or die("Unable to open file!");
-fwrite($myfile, "Hello World, time is " . time() . "\n");
+$myfile = fopen($filenamn, "a+") or die("Unable to open file!");
+fwrite($myfile, "Användare anlände " . date('Y-m-d H:i:s', time()) . ", och från IP adress: " . $NewUserIP . "\n");
 fclose($myfile);
+$linjemangd = 0;
+$linjehant = fopen($filenamn, "r");
+while(!feof($linjehant)){
+    $linjor = fgets($linjehant);
+    $linjemangd++;
+}
+fclose($linjehant);
+
+print("<p>Vi har haft totalt " . $linjemangd . " stycken besök</p>");
+
 ?>
+        </article>
+
+        <article>
+            <h2>Uppg 9</h2>
+            <form action="index.php" method="get">
+                Username: <input type="text" name="guestUsername"><br>
+                Comment: <input type="text" name="Kommentar"><br>
+            </form>
+                <input type="submit" value="Post">
+            </form>
+            <?php
+            $guestbookfile = "gastbok.log";
+            $guestname = $_GET["guestUsername"];
+            $comment = $_GET["Kommentar"];
+            $CFile = fopen($guestbookfile, "a+") or die("Unable to reach the file");
+            fwrite($CFile, "Användare " . $guestname . " kommenterade:' " . $comment . " '. Loggades " . date('Y-m-d H:i:s', time()) . "/n");
+            fclose($myfile);
+            ?>
         </article>
     </div>
 </body>
