@@ -192,10 +192,10 @@ if ($login == "Admin") {
             <h2>Uppg 7</h2>
 
             <form action="index.php" method="post" enctype="multipart/form-data">
-  Select image to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload">
-  <input type="submit" value="Upload Image" name="submit">
-</form>
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
             <?php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -278,14 +278,14 @@ print("<p>Vi har haft totalt " . $linjemangd . " stycken besök</p>");
                 Username: <input type="text" name="guestUsername"><br>
                 Comment: <input type="text" name="Kommentar"><br>
             </form>
-                <input type="submit" value="Post">
+            <input type="submit" value="Post">
             </form>
             <?php
             $guestbookfile = "gastbok.log";
-            $guestname = $_GET["guestUsername"];
-            $comment = $_GET["Kommentar"];
+            $guestname = test_input($_REQUEST["guestUsername"]);
+            $comment = test_input($_REQUEST["Kommentar"]);
             $CFile = fopen($guestbookfile, "a+") or die("Unable to reach the file");
-            fwrite($CFile, "Användare " . $guestname . " kommenterade:' " . $comment . " '. Loggades " . date('Y-m-d H:i:s', time()) . "/n");
+            fwrite($CFile, "Användare $guestname kommenterade:' $comment '. Loggades " . date('Y-m-d H:i:s', time()) . "\n");
             fclose($myfile);
             ?>
         </article>
