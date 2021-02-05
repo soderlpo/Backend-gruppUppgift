@@ -44,7 +44,7 @@ print("<p>Serverns namn är : " . $serverName . " och IP addressen är " . $serv
 print("<p>Apache och PHP versonerna är: " . $serverApaVers . " och " . $serverPHPVers . "</p>");
 ?>
         </article>
-
+<!------------------------------------------------------------------------------------------------------------------------------------------>
         <article>
             <h2>Uppgift 2</h2>
             <p>Tid och datum</p>
@@ -68,7 +68,7 @@ $manadInt = (int) $manad;
 print("<p>På Svenska är det: " . $dagar[$dagInt] . " idag, och månaden är: " . $manader[$manadInt]);
 ?>
         </article>
-
+<!------------------------------------------------------------------------------------------------------------------------------------------>
         <article>
             <h2>Uppgift 3</h2>
             <p>Formulär</p>
@@ -94,7 +94,7 @@ if (isset($_REQUEST["dag"]) && isset($_REQUEST["manad"]) && isset($_REQUEST["ar"
 ?>
 
         </article>
-
+<!------------------------------------------------------------------------------------------------------------------------------------------>
         <article>
             <h2>Uppgift 4</h2>
             <form action="index.php" method="get">
@@ -116,7 +116,7 @@ function randomPassword()
     return implode($passwordran);
 }
 if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
-    //Uppg 4 - Skicka confirmation email
+
     $username = test_input($_GET['username']);
     $email = test_input($_GET['email']);
 
@@ -134,7 +134,7 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['email'])) {
 ?>
 
         </article>
-
+<!------------------------------------------------------------------------------------------------------------------------------------------>
         <article>
             <h2>Uppg 5</h2>
             <p>Cookies</p>
@@ -157,6 +157,7 @@ if (!isset($_COOKIE[$cookie_name])) {
 
 ?>
         </article>
+ <!------------------------------------------------------------------------------------------------------------------------------------------>       
         <article>
             <h2>Uppg 6</h2>
             <!--Glöm inte att ändra method="get" till method="post"-->
@@ -188,6 +189,7 @@ if ($login == "Admin") {
 }
 ?>
         </article>
+<!------------------------------------------------------------------------------------------------------------------------------------------>
         <article>
             <h2>Uppg 7</h2>
 
@@ -248,7 +250,7 @@ $dirctoryscan = scandir($target_dir);
 print_r($dirctoryscan);
 ?>
         </article>
-
+<!------------------------------------------------------------------------------------------------------------------------------------------>
         <article>
             <h2>Uppg 8</h2>
             <?php
@@ -257,7 +259,7 @@ $filenamn = "besok.log";
 //TODO: Hitta användaren i $_SERVER och skriv in den
 //TODO: Formatera tiden i nåt mänkoläsligt format
 $myfile = fopen($filenamn, "a+") or die("Unable to open file!");
-fwrite($myfile, "Användare anlände " . date('Y-m-d H:i:s', time()) . ", och från IP adress: " . $NewUserIP . "\n");
+fwrite($myfile, "Anvandare anlande " . date('Y-m-d H:i:s', time()) . ", och fran IP adress: " . $NewUserIP . "\n");
 fclose($myfile);
 $linjemangd = 0;
 $linjehant = fopen($filenamn, "r");
@@ -270,24 +272,33 @@ fclose($linjehant);
 print("<p>Vi har haft totalt " . $linjemangd . " stycken besök</p>");
 
 ?>
+<a href="besok.log"> Besöks loggen</a>
         </article>
-
+<!------------------------------------------------------------------------------------------------------------------------------------------>
         <article>
             <h2>Uppg 9</h2>
             <form action="index.php" method="get">
                 Username: <input type="text" name="guestUsername"><br>
                 Comment: <input type="text" name="Kommentar"><br>
+                <input type="submit" value="Post">
             </form>
-            <input type="submit" value="Post">
+            
             </form>
             <?php
             $guestbookfile = "gastbok.log";
-            $guestname = test_input($_REQUEST["guestUsername"]);
-            $comment = test_input($_REQUEST["Kommentar"]);
-            $CFile = fopen($guestbookfile, "a+") or die("Unable to reach the file");
-            fwrite($CFile, "Användare $guestname kommenterade:' $comment '. Loggades " . date('Y-m-d H:i:s', time()) . "\n");
-            fclose($myfile);
+            if (isset($_REQUEST['guestUsername']) && isset($_REQUEST['Kommentar'])){
+                $guestname = test_input($_REQUEST["guestUsername"]);
+                $comment = test_input($_REQUEST["Kommentar"]);
+                $CFile = fopen($guestbookfile, "a+") or die("Unable to reach the file");
+                fwrite($CFile, "User $guestname kommenterade:' $comment '. Loggades " . date('Y-m-d H:i:s', time()) . "\n");
+                fclose($myfile);
+                print("Comment saved!");
+            }
+            else {
+                print("No Comment!");
+            }
             ?>
+            <a href="gastbok.log">Se loggen här</a>
         </article>
     </div>
 </body>
