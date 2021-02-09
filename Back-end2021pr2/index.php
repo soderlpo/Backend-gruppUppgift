@@ -8,7 +8,7 @@
 
 <article>
     <h1>Mata in data</h1>
-    <p>Sälj varor här</p>
+    <p>Skapa bio</p>
     <?php include "insert.php" ?>
 </article>
 

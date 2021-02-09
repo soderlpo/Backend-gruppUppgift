@@ -1,6 +1,6 @@
 </section>
 
-<footer>Made by Dennis</footer>
+<footer>Stolen by Soderlpo</footer>
 
 </body>
 
