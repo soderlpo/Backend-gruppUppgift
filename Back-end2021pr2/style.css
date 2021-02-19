@@ -68,6 +68,12 @@ article {
     display: block;                     /* Gör span till blockelement (100% bredd) */
 }
 
+.ad{
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 /* Allmängällande stilar för textformatering */
 h1 {
     margin: 0;              /* bort med inbyggd margin */
