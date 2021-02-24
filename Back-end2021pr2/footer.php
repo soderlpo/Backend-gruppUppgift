@@ -1,6 +1,12 @@
 </section>
 
-<footer>Stolen by Soderlpo</footer>
+<footer>
+
+Stolen by Soderlpo
+<?php
+$conn->close();
+?>
+</footer>
 
 </body>
 

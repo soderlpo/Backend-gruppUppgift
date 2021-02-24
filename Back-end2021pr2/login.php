@@ -6,12 +6,22 @@
     <input type="submit" value="Logga in">
 </form>
 <?php
-if (isset($_REQUEST['stage']) && $_REQUEST['stage'] == 'login'){
-    print("logging in om 2 sekunder...");
-    //fusk login för att fortsätta
-    $_SESSION['user'] = "Hacker";
-    header("refresh:2;url=./profile.php");
-    //header("Location: ./profile.php"); //Redirect user on login
-}
+if (    isset($_REQUEST['usr']) && 
+        isset($_REQUEST['psw'])) {
+            $username = test_input($_REQUEST['usr']);
+            $password = test_input($_REQUEST['psw']);
+            $password = hash("sha256", $password);
+            $conn = create_conn();
+            $_SESSION['user'] = $username;
+            $sql = "SELECT * FROM `users` WHERE username='$username' and password = '$password'";
+            $stmt = $conn->prepare($sql); // Returnerar mysqli_stmt objekt
+            $stmt->bind_param("s,s", $username, $password); //skick nu först iväg användar inmatad data i sql
+            $stmt->execute(); 
+            $result = $stmt->get_result();
+            //$find = $conn->query ("SELECT * FROM `users` WHERE username='$username' and password = '$password'");
+            print("logging in om 2 sekunder...");
+            header("refresh:2;url=./profile.php");
+    
+        }
 
 ?>

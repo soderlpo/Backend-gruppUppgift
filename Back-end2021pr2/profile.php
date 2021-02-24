@@ -22,6 +22,7 @@ print("<p>Riktiga namnet: <input type='text' name='realname' value='" . $row['re
 print("Annonstext: <textarea name='bio'>" . $row['bio'] . "</textarea></p>");
 print("<input type='submit' value ='Updatera'>");
 print("</form>");
+include "delete.php";
 //TODO skriv ut tidigare komentarer på ens profil
 }
 else {

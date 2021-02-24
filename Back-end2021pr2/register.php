@@ -38,11 +38,14 @@ if (    isset($_REQUEST['usr']) &&
     //TODO Slutför registrerings formuläret
     //TODO Skapa inloggnings formuläret
     // Prepared statements går snabbare att köra och skyddar mot SQL Injection!
+    $conn = create_conn();
     $statement = $conn->prepare("INSERT INTO users (username, realname, password, email, zipcode, bio, salary, preference) VALUES (?,?,?,?,?,?,?,?)");
     $statement->bind_param("ssssisii", $username, $realname, $password, $email, $zipcode, $bio, $salary, $preference);
     // De flesta metoderna returnerar ett objekt (sant) om de lyckas & false ifall de misslyckas.
     if ($statement->execute()) {    
         print("Du har registrerats!");
+    } else {
+        print("Någonting gick fel!");
     }
 
 
