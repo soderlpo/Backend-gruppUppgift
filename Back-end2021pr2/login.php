@@ -15,13 +15,12 @@ if (    isset($_REQUEST['usr']) &&
             $_SESSION['user'] = $username;
             $sql = "SELECT * FROM `users` WHERE username='$username' and password = '$password'";
             $stmt = $conn->prepare($sql); // Returnerar mysqli_stmt objekt
-            $stmt->bind_param("s,s", $username, $password); //skick nu först iväg användar inmatad data i sql
+            $stmt->bind_param("ss", $username, $password); //skick nu först iväg användar inmatad data i sql
             $stmt->execute(); 
             $result = $stmt->get_result();
-            //$find = $conn->query ("SELECT * FROM `users` WHERE username='$username' and password = '$password'");
             print("logging in om 2 sekunder...");
             header("refresh:2;url=./profile.php");
-    
+            //$find = $conn->query ("SELECT * FROM `users` WHERE username='$username' and password = '$password'");
         }
 
 ?>

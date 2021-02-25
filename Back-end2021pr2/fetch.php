@@ -7,12 +7,12 @@ if (isset($_REQUEST['salary']) ) {
     $sql = "SELECT * FROM users ORDER BY salary DESC";
     FetchAndWrite($sql);
 }
-
+ 
 
 //Om man inte har filtrerat
 else if(!isset($_REQUEST['salary'])) {
     // Skapa SQL kommando
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM users ORDER BY salary ASC";
     FetchAndWrite($sql);
 }
 function FetchAndWrite($sql){
@@ -26,7 +26,7 @@ function FetchAndWrite($sql){
             print("Användare i databasen: " . $row['username'] . "</br>");
             print("Lön: " . $row['salary']. "<br>");
             $prefArr = ['Manlig','Kvinlig','Båda','Annan','All'];
-            print("Preferens: " . $row['preference'] . "<br>");
+            print("Preferens: " . $prefArr[$row['preference']] . "<br>");
             print("<a href='./profile.php?user=" . $row['username'] . "'>Kommentera</a></p>");
         }
     }   else {

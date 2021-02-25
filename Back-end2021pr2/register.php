@@ -7,8 +7,16 @@
         Adress <br><input type="text" name="zip"></br>
         Bio <br><input type="text" name="bio"></br>
         Inkomst <br><input type="text" name="sal"></br>
-        Preferens <br><input type="text" name="pref"></br>
-        <input type="submit" value="Registrera dig">
+        <br><label for="pref">Preference:</label>
+
+        <select name="pref">
+            <option value="0">Manlig</option>
+            <option value="1">Kvinlig</option>
+            <option value="2">Båda</option>
+            <option value="3">Annan</option>
+            <option value="4">Alla</option>
+        </select>
+        <br><input type="submit" value="Registrera dig">
         <input type="hidden" name="stage" value="register">
     </form>
 <?php

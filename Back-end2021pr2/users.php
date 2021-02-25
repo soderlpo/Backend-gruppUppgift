@@ -9,18 +9,17 @@
     <form action="users.php" method="get">
         <!-- Radio buttons för sortering enligt förmögenhet -->
         <label for="rich">Rika först</label>
-        <input type="radio" name="salary" value="rich">
+        <input type="radio" name="salary" value="rich" checked>
         <label for="poor">Rika sist</label>
         <input type="radio" name="salary" value="poor"><br>
 
-        <label for="rich">Populära först</label>
-        <input type="radio" name="likes" value="pop">
+        <label for="pop">Populära först</label>
+        <input type="radio" name="likes" value="pop" checked>
         <label for="notpop">Populära sist</label>
         <input type="radio" name="likes" value="notpop"><br>
 
         <!-- Dropdown för preferens -->
         <label for="pref">Preference:</label>
-
         <select name="pref">
             <option value="male">Manlig</option>
             <option value="female">Kvinlig</option>
@@ -34,7 +33,6 @@
     </form>
     </p>
 
-    
     <?php include "fetch.php" ?>
 </article>
 

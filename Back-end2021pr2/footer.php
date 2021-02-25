@@ -4,7 +4,7 @@
 
 Stolen by Soderlpo
 <?php
-$conn->close();
+//$conn->close();
 ?>
 </footer>
 
