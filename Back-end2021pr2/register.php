@@ -43,8 +43,6 @@ if (    isset($_REQUEST['usr']) &&
     $preference = test_input($_REQUEST['pref']);
 
     //TODO Börja med att checka ifall användaren finns i databasen
-    //TODO Slutför registrerings formuläret
-    //TODO Skapa inloggnings formuläret
     // Prepared statements går snabbare att köra och skyddar mot SQL Injection!
     $conn = create_conn();
     $statement = $conn->prepare("INSERT INTO users (username, realname, password, email, zipcode, bio, salary, preference) VALUES (?,?,?,?,?,?,?,?)");

@@ -21,11 +21,11 @@
         <!-- Dropdown för preferens -->
         <label for="pref">Preference:</label>
         <select name="pref">
-            <option value="male">Manlig</option>
-            <option value="female">Kvinlig</option>
-            <option value="both">Båda</option>
-            <option value="other">Annan</option>
-            <option value="all">Alla</option>
+            <option value="0">Manlig</option>
+            <option value="1">Kvinlig</option>
+            <option value="2">Båda</option>
+            <option value="3">Annan</option>
+            <option value="4">Alla</option>
         </select>
 
         <input type="submit" value="Filtrera">

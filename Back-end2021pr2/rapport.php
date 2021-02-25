@@ -3,12 +3,11 @@
 
 <h1>Rapport för pojekt 2</h1>
 <article>
-<p> Projekt 2 var märkbart svårare och det kändes ofta som om jag inte hadde fått tilräckligt med information under lektionerna för at klara av 
-del upgifterna. Ibland så hjälpte det att gå tillbaka och se på streamen av lektionerna, men det kändes ibland som att viktig information blev 
-bort lämnat i hopp om att vi skulle ta räda på det på egene hand. Det kanske blir lätt då att se att läxorna ofta kändes omöjliga och det ända 
-kodnings tillfället vi fick hjälpte bara med att få ihop några små detaljer. Det blev klart med bara två dagar kvar att jag inte kunde få färdigt allt i tid, 
-så det gällde sig bara att få färdigt det jag kunde gjöra och sedan lämna in projektet, även efter att jag fick hjälp här och där. 
-Jag önskar att jag hade fler positiva saker att säga om det hela, men tyvärr har jag varit för stressad och förvirrad med det här slut projektet för att kunna hitta på någonting.</p>
+<p> Projekt 2 var märkbart svårare och det kändes ofta som om jag inte hade helt tilräckligt med information om hur uppgifter skulle avklaras. 
+Trots det så arbetade jag fram så got det gick, inspelda lektioner samt andra stundenter lyckades ge rätså god vägledning när det 
+började bli svårt. Jag skulle säga att det som kansk gjorde det så svårt var att visa viktiga delar blev lämnade till läxa och blev så lite svårare att 
+komma fram med svar till, specielt när senare uppgifter krävde de tidigare delarna av projectet. Jag önkar att jag hade kunnat få mera gjort av projektet, men 
+eventuelt så tar tiden slut och det gick inte att få mera gjort.Det kanske skulle ha varit bra med ett tillt kodningstillfälle.</p>
 
 </article>
 

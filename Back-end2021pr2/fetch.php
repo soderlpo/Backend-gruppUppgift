@@ -1,18 +1,23 @@
 <?php
 
 //Om man har sorterat/filtrerat
-if (isset($_REQUEST['salary']) ) {
+if (isset($_REQUEST['salary'] )&& $_REQUEST['salary'] == 'rich' ) {
     print("filtrerar..."); 
     // Skapa SQL kommando
     $sql = "SELECT * FROM users ORDER BY salary DESC";
     FetchAndWrite($sql);
 }
- 
+else if (isset($_REQUEST['salary'] )&& $_REQUEST['salary'] == 'poor' ) {
+    print("filtrerar..."); 
+    // Skapa SQL kommando
+    $sql = "SELECT * FROM users ORDER BY salary ASC";
+    FetchAndWrite($sql);
+} 
 
 //Om man inte har filtrerat
 else if(!isset($_REQUEST['salary'])) {
     // Skapa SQL kommando
-    $sql = "SELECT * FROM users ORDER BY salary ASC";
+    $sql = "SELECT * FROM users";
     FetchAndWrite($sql);
 }
 function FetchAndWrite($sql){

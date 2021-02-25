@@ -6,21 +6,32 @@
     <input type="submit" value="Logga in">
 </form>
 <?php
-if (    isset($_REQUEST['usr']) && 
-        isset($_REQUEST['psw'])) {
+
+        if(isset($_REQUEST['usr']) && isset($_REQUEST['psw'])){
             $username = test_input($_REQUEST['usr']);
             $password = test_input($_REQUEST['psw']);
-            $password = hash("sha256", $password);
+            $password = hash("sha256",$password);
+          
             $conn = create_conn();
-            $_SESSION['user'] = $username;
-            $sql = "SELECT * FROM `users` WHERE username='$username' and password = '$password'";
-            $stmt = $conn->prepare($sql); // Returnerar mysqli_stmt objekt
-            $stmt->bind_param("ss", $username, $password); //skick nu först iväg användar inmatad data i sql
-            $stmt->execute(); 
+            $sql = "SELECT * FROM users WHERE username=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s",$username);
+            $stmt->execute();
+          
             $result = $stmt->get_result();
-            print("logging in om 2 sekunder...");
-            header("refresh:2;url=./profile.php");
-            //$find = $conn->query ("SELECT * FROM `users` WHERE username='$username' and password = '$password'");
-        }
+            $data = mysqli_fetch_array($result);
+            
+            if($data){
+              if($password == $data["password"]){
+                // Lösenordet e rätt, lets do stuff
+                $_SESSION['user'] = $username;
+                print("logging in...");
+                header("refresh:1.5;url=./profile.php");
+              }else{
+                // Lösenordet e fel, lets do error
+                print("logg in misslyckades");
+              }
+            }
+          }
 
 ?>
